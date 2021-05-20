@@ -1,8 +1,8 @@
 
 //Declaracion de variables
-var num1 = 0;
-var num2 = 0;
-var opera;
+let num1 = 0;
+let num2 = 0;
+let opera;
  //Función que coloca el número presionado
 function darNumero(numero){
 if(num1==0 && num1 !== '0.'){
@@ -65,7 +65,14 @@ switch (opera){
         num1 *= num2;
     break;
     case "/":
-        num1 = num2 / num1;
+        if (num2 == 0) {
+            num1="No se puede dividir por cero";
+            display();
+        }
+        else {
+            num1 = (num1 / num2);
+        }
+        
 
     break;
 }
