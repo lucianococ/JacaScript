@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+
+        var operador = prompt("¿Qué tipo de calculo querés hacer? dividir/sumar/restar/multiplicar");
+        var num1 = parseInt(prompt("Introduce el primer valor"));
+        var num2 = parseInt(prompt("Introduce el segundo valor"));
+        var resultado = calculadora(operador, num1, num2);
+
+        function calculadora(operador, valor1, valor2) {
+            if (operador == "dividir") {
+                if (num2 == 0) {
+                    resultado = "No se puede dividir por cero";
+                }
+                else {
+                    resultado = (num1 / num2);
+                }
+            }
+
+            else {
+
+                if (operador == "sumar") {
+                    resultado = (num1 + num2);
+                }
+
+                else if (operador == "restar") {
+                    resultado = (num1 - num2);
+                }
+                else if (operador == "multiplicar") {
+                    resultado = (num1 * num2);
+                }
+            }
+            return resultado;
+
+        }
+
+        document.write("El resultado del calculo es " + resultado);
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

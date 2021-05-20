@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+    var operador = prompt("¿Qué tipo de calculo querés hacer? sumar/restar/multiplicar");
+    var num1 = parseInt(prompt("Introduce el primer valor"));
+    var num2 = parseInt(prompt("Introduce el segundo valor"));
+
+
+    var resultado = calculadora(operador, num1, num2);
+
+
+
+    function calculadora(operador, valor1, valor2) {
+        if (operador == "sumar") {
+            var resultado = (num1 + num2);
+        }
+
+        else if (operador == "restar") {
+            var resultado = (num1 - num2);
+        }
+        else if (operador == "multiplicar") {
+            var resultado = (num1 * num2);
+        }
+        return resultado;
+
+    }
+    document.write( operador +" "+ num1 + " y " + num2 + " da " + resultado);
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
