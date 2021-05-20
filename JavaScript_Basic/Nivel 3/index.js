@@ -64,6 +64,7 @@ switch (opera){
     case "*":
         num1 *= num2;
     break;
+    // Advertencia divisor 0. Problema: hay que hacer dos veces click en =
     case "/":
         if (num2 == 0) {
             num1="No se puede dividir por cero";
@@ -72,8 +73,6 @@ switch (opera){
         else {
             num1 = (num1 / num2);
         }
-        
-
     break;
 }
 display();
