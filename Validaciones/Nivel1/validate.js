@@ -1,3 +1,6 @@
+
+let emails = [];
+
 // Formulario Login
 const form = document.getElementById('myFormLg');
 
@@ -23,6 +26,17 @@ function loginValidate(e) {
 		e.target.children[1].children[2].innerText = "El email no cumple con el formato";
 		acumErroresLg++;
 	}
+	let chequeo = chequear(e.target[0].value);
+	if (chequeo != true) {
+		modalBody.innerHTML=`<p>El e-mail no está registrado</p>`
+		$(document).ready(function()
+		{
+		   $("#myModal").modal("show");
+		});
+		acumErroresLg++;
+	} else if (chequeo == true) {
+		
+	}
 
 	// Contraseña
 	if (e.target[1].value == "") {
@@ -32,9 +46,9 @@ function loginValidate(e) {
 	}
 	var errores = validarErrores(acumErroresLg);
 	if (errores == true) {
-		$(document).ready(function()
-		{
-		   $("#myModal").modal("show");
+		modalBody.innerHTML=`<p>Inicio sesión exitosa</p>`
+		$(document).ready(function () {
+			$("#myModal").modal("show");	
 		});
 	} else if (errores == false) {
 
@@ -46,8 +60,10 @@ function loginValidate(e) {
 		return true;
 
 	}
-
+	
 }
+
+
 // Formulario de registro
 const form2 = document.getElementById('myFormId');
 
@@ -61,11 +77,12 @@ function registerValidate(e) {
 
 	//var inputEmail = document.forms["myForm"]["inputEmail"];
 	//var inputUser = document.getElementById('registroUsuario');
-	 //var inputEmail1 = document.getElementById('registroEmail');
+	//var inputEmail1 = document.getElementById('registroEmail');
 	// var inputPassword1 = document.forms["myForm"]["registroPassword1"];
 	// var inputPassword2 = document.forms["myForm"]["registroPassword2"];
 	// var inputProv = document.forms["myForm"]["registroProv"];
 	var gridCheck = document.forms["myForm"]["gridCheck"];
+
 
 
 	// 	// Usuario
@@ -74,6 +91,7 @@ function registerValidate(e) {
 		e.target.children[1].children[2].innerText = "Este campo es obligatorio";
 		acumErrores++;
 	}
+
 	// E-mail
 	if (e.target[1].value == "") {
 		e.target[1].classList.add("is-invalid");
@@ -89,8 +107,8 @@ function registerValidate(e) {
 		e.target[2].classList.add("is-invalid");
 		e.target.children[3].children[2].innerText = "Este campo es obligatorio";
 		acumErrores++;
-	 } 
-	
+	}
+
 	// Confirmar Contraseña
 	if (e.target[3].value == "") {
 		e.target[3].classList.add("is-invalid");
@@ -113,15 +131,25 @@ function registerValidate(e) {
 		e.target.children[6].children[2].innerText = "Acepta las bases";
 		acumErrores++;
 	}
-	var errores = validarErrores(acumErrores);
-	 if (errores == false) {
+
+	let chequeo = chequear(e.target[1].value);
+	if (chequeo != true) {
+		emails.push(e.target[1].value);
 		
+	} else if (chequeo == true) {
+		modalBody2.innerHTML=`<p>E-mail ya registrado</p>`
+		$(document).ready(function () {
+			$("#myModal2").modal("show");
+		});
+		acumErrores++;
+	}
+
+	var errores = validarErrores(acumErrores);
+	if (errores == false) {
+
 	} else if (errores == true) {
-		//modalBody2.innerHTML=`<p>Nombre:${registroUsuario.value}</p>`
-				
-		$(document).ready(function()
-		{
-		   $("#myModal2").modal("show");
+		$(document).ready(function () {
+			$("#myModal2").modal("show");
 		});
 	}
 
@@ -157,11 +185,27 @@ function validarErrores(error) {
 
 }
 
-
-
 function validar_email(email) {
 	var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	return regex.test(email) ? true : false;
+}
+function Resetear1(){
+	document.getElementById('myFormLg').reset();
+}
+function Resetear2(){
+	document.getElementById('myFormId').reset();
+}
+function chequear(x) {
+	let respuesta
+	for (let i = 0; i <= emails.length; i++) {
+		if (emails[i] == x) {
+			respuesta = true;
+
+		} if (emails[i] != x) {
+			respuesta = false;
+
+		} return respuesta
+	}
 }
 
 
